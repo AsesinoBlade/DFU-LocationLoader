@@ -143,6 +143,9 @@ namespace LocationLoader
             LocationInstance loc = locationData.Location;
             LocationPrefab locationPrefab = locationData.Prefab;
 
+            if (locationPrefab == null || locationPrefab.obj == null || locationPrefab.obj.Count == 0)
+                return;
+
             var saveInterface = LocationModLoader.modObject.GetComponent<LocationSaveDataInterface>();
 
             foreach (LocationObject obj in locationPrefab.obj)
@@ -239,7 +242,7 @@ namespace LocationLoader
 
                 if (go != null)
                 {
-                    if (go.GetComponent<DaggerfallBillboard>())
+                    if (go.GetComponent<DaggerfallBillboard>() != null)
                     {
                         float tempY = go.transform.position.y;
                         go.GetComponent<DaggerfallBillboard>().AlignToBase();
