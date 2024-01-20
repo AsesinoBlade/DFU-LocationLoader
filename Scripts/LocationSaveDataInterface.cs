@@ -534,12 +534,16 @@ namespace LocationLoader
 
         public void RegisterActiveSerializer(LocationLootSerializer serializer)
         {
-            activeLootSerializers.Add(serializer.LoadID, serializer);
+            if (activeLootSerializers.ContainsKey(serializer.LoadID))
+                activeLootSerializers[serializer.LoadID] = serializer;
+            else
+                activeLootSerializers.Add(serializer.LoadID, serializer);
         }
 
         public void DeregisterActiveSerializer(LocationLootSerializer serializer)
         {
-            activeLootSerializers.Remove(serializer.LoadID);
+            if (activeLootSerializers.ContainsKey(serializer.LoadID))
+                activeLootSerializers.Remove(serializer.LoadID);
         }
 
         public void AddDeadEnemy(LocationEnemySerializer serializer)
@@ -554,12 +558,16 @@ namespace LocationLoader
 
         public void RegisterActiveSerializer(LocationEnemySerializer serializer)
         {
-            activeEnemySerializers.Add(serializer.LoadID, serializer);
+            if (activeEnemySerializers.ContainsKey(serializer.LoadID))
+                activeEnemySerializers[serializer.LoadID] = serializer;
+            else
+                activeEnemySerializers.Add(serializer.LoadID, serializer);
         }
 
         public void DeregisterActiveSerializer(LocationEnemySerializer serializer)
         {
-            activeEnemySerializers.Remove(serializer.LoadID);
+            if (activeEnemySerializers.ContainsKey(serializer.LoadID))
+                activeEnemySerializers.Remove(serializer.LoadID);
         }
 
 
